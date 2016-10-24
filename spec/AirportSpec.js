@@ -28,4 +28,12 @@ describe('Airport',function() {
     expect(airport.isStormy()).toBeFalsy();
   });
 
+  describe('in stormy conditions',function() {
+    it('doesnt clear planes for takeoff',function() {
+      spyOn(airport, 'isStormy').and.returnValue(true);
+      expect(function(){airport.clearForTakeOff(plane);}).toThrowError('cannot takeoff during storm')
+    });
+  });
+
+
 });
